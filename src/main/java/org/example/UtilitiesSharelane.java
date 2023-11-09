@@ -25,15 +25,15 @@ public class UtilitiesSharelane {
         return $("input[value='Login']");
     }
 
-    public void openRegistrationPage(){
+    public static void openRegistrationPage(){
         open("https://www.sharelane.com/cgi-bin/register.py");
     }
 
-    public void enterCorrectZipCode(){
+    public static void enterCorrectZipCode(){
         $x("//input[@name='zip_code']").sendKeys("33333");
     }
 
-    public void enterValidCredentials(){
+    public static void enterValidCredentials(){
         $x("//input[@name='first_name']").sendKeys("Tester");
         $x("//input[@name='last_name']").sendKeys("Schemer");
         $x("//input[@name='email']").sendKeys("testemail@email.com");
@@ -41,7 +41,7 @@ public class UtilitiesSharelane {
         $x("//input[@name='password2']").sendKeys("1111");
     }
 
-    public void parseLoginAndPassword() throws IOException {
+    public static void parseLoginAndPassword() throws IOException {
         String login = $x("//table[@border='1']//tr[1]//td[2]").getText();
         String password = $x("//table[@border='1']//tr[2]//td[2]").getText();
 
@@ -55,7 +55,7 @@ public class UtilitiesSharelane {
     }
 
 
-    public void registerNewAccount() throws IOException {
+    public static void registerNewAccount() throws IOException {
 
         //Go to registration page
         openRegistrationPage();
@@ -85,5 +85,16 @@ public class UtilitiesSharelane {
 
         //Check if login is successful (True)
         return $x("//a[@href='./log_out.py']").exists();
+    }
+
+    public static void loginOverrideExpiration() throws IOException, ParseException {
+        if (loginToSite()){
+            return;
+        }
+        registerNewAccount();
+        if (loginToSite()){
+            return;
+        }
+        System.out.println("Login failed");
     }
 }
