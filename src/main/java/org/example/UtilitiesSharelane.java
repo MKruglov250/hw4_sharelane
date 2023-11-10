@@ -70,6 +70,7 @@ public class UtilitiesSharelane {
 
         //Account is created: parsing login data and saving to JSON
         parseLoginAndPassword();
+        open("cgi-bin/main.py");
     }
 
     public static boolean loginToSite() throws IOException, ParseException {
@@ -77,24 +78,25 @@ public class UtilitiesSharelane {
         JSONParser parser = new JSONParser();
         Object obj = parser.parse(new FileReader("utils/credentials.json"));
         String login = ((JSONObject) obj).get("login").toString();
-        String password = ((JSONObject) obj).get("login").toString();
+        String password = ((JSONObject) obj).get("password").toString();
 
         //Logging in
         getLoginElement().sendKeys(login);
         getPasswordElement().sendKeys(password);
+        getLoginButton().click();
 
         //Check if login is successful (True)
         return $x("//a[@href='./log_out.py']").exists();
     }
 
     public static void loginOverrideExpiration() throws IOException, ParseException {
-        if (loginToSite()){
-            return;
+        if (loginToSite()) {
+        } else {
+            registerNewAccount();
+            if (loginToSite()) {
+            } else {
+                System.out.println("Login failed");
+            }
         }
-        registerNewAccount();
-        if (loginToSite()){
-            return;
-        }
-        System.out.println("Login failed");
     }
 }
