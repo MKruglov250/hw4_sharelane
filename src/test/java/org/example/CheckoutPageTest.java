@@ -2,6 +2,7 @@ package org.example;
 
 import org.json.simple.parser.ParseException;
 import org.junit.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -102,6 +103,12 @@ public class CheckoutPageTest extends BaseTest {
             priority = 1)
     public void checkAmexBalanceAfterPayment() throws IOException, ParseException {
         Assert.assertEquals("990.0", checkoutPage.checkAmexBalance());
+    }
+
+    @AfterClass
+    public void doLogout(){
+        open("cgi-bin/main.py");
+        UtilitiesSharelane.logout();
     }
 
 }

@@ -39,3 +39,4 @@ build/
 
 ### Credentials service file ###
 /utils/credentials.json
+/utils/creditcard.json

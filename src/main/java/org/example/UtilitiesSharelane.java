@@ -99,4 +99,8 @@ public class UtilitiesSharelane {
             }
         }
     }
+
+    public static void logout(){
+        $x("//a[@href='./log_out.py']").click();
+    }
 }

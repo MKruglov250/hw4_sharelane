@@ -2,6 +2,7 @@ package org.example;
 
 import org.json.simple.parser.ParseException;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -66,6 +67,11 @@ public class ShoppingCartTest extends BaseTest{
     @Test(groups = "Smoke", description = "Test that proceeding to checkout works")
     public void proceedToCheckout(){
         Assert.assertTrue(shoppingCart.checkoutPageCheck());
+    }
+
+    @AfterClass
+    public void doLogout(){
+        UtilitiesSharelane.logout();
     }
 
 

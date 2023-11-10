@@ -2,6 +2,7 @@ package org.example;
 
 import org.json.simple.parser.ParseException;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -23,6 +24,10 @@ public class LoginPageTest extends BaseTest {
         Assert.assertTrue(loginPage.checkLoginOrRegisterAndLogin());
     }
 
+    @AfterClass
+    public void doLogout(){
+        UtilitiesSharelane.logout();
+    }
 
 
 }

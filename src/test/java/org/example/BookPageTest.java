@@ -2,6 +2,7 @@ package org.example;
 
 import org.json.simple.parser.ParseException;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -62,6 +63,11 @@ public class BookPageTest extends BaseTest {
         bookPage.addBookToCart();
         open("cgi-bin/shopping_cart.py");
         Assert.assertEquals(bookPage.getBookNameFromCart(),bookPage.compareBookName(bookId));
+    }
+
+    @AfterClass
+    public void doLogout(){
+        UtilitiesSharelane.logout();
     }
 
 
