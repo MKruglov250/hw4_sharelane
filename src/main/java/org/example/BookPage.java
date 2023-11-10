@@ -5,13 +5,11 @@ import static com.codeborne.selenide.Selenide.$x;
 public class BookPage {
 
     public String getBookAuthor(){
-        return $x("/html/body/center/table/tbody/tr[5]/td/" +
-                "table/tbody/tr/td[2]/p[1]/b").getText();
+        return $x("//tbody/tr[5]/td/table/tbody/tr/td[2]/p[1]/b").getText();
     }
 
     public String getBookName(){
-        return $x("/html/body/center/table/tbody/tr[5]/td/" +
-                "table/tbody/tr/td[2]/p[2]").getText();
+        return $x("//tbody/tr[5]/td/table/tbody/tr/td[2]/p[2]").getText();
     }
 
     public boolean getPicture(){

@@ -14,6 +14,12 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class CheckoutPage {
 
+    public SelenideElement nameSelect =  $x("//select[@name='type']");
+
+    public SelenideElement passwordInput =  $x("//select[@name='type']");
+
+    public SelenideElement loginButton =  $x("//select[@name='type']");
+
     public SelenideElement getCardNumberField(){
         return $x("//input[@name='card_number']");
     }
@@ -35,7 +41,7 @@ public class CheckoutPage {
         credJson.put("visa",cardNumber);
 
         open("cgi-bin/get_credit_card.py");
-        $x("//select[@name='type']").selectOption(1);
+        nameSelect.selectOption(1);
         $x("//input[@value='Generate Credit Card']").click();
         credJson.put("mastercard",cardNumber);
 
