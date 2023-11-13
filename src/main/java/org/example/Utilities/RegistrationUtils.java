@@ -4,10 +4,10 @@ import java.io.*;
 
 import static com.codeborne.selenide.Selenide.*;
 
-public class UtilitiesSharelane {
+public class RegistrationUtils {
 
     public static void openRegistrationPage(){
-        open("https://www.sharelane.com/cgi-bin/register.py");
+        open("cgi-bin/register.py");
     }
 
     public static void enterCorrectZipCode(){
@@ -41,7 +41,4 @@ public class UtilitiesSharelane {
         open("cgi-bin/main.py");
     }
 
-    public static void logout(){
-        $x("//a[@href='./log_out.py']").click();
-    }
 }

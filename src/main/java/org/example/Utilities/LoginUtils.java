@@ -50,7 +50,7 @@ public class LoginUtils {
     public static void loginOverrideExpiration() throws IOException, ParseException {
         if (loginToSite()) {
         } else {
-            UtilitiesSharelane.registerNewAccount();
+            RegistrationUtils.registerNewAccount();
             if (loginToSite()) {
             } else {
                 System.out.println("Login failed");

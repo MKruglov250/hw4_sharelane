@@ -2,7 +2,7 @@ package org.example;
 
 import org.example.Utilities.JsonUtils;
 import org.example.Utilities.LoginUtils;
-import org.example.Utilities.UtilitiesSharelane;
+import org.example.Utilities.RegistrationUtils;
 import org.json.simple.parser.ParseException;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -111,7 +111,7 @@ public class CheckoutPageTest extends BaseTest {
     @AfterClass
     public void doLogout(){
         open("cgi-bin/main.py");
-        UtilitiesSharelane.logout();
+        LoginUtils.logout();
     }
 
 }

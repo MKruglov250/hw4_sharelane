@@ -1,7 +1,7 @@
 package org.example;
 
 import org.example.Utilities.LoginUtils;
-import org.example.Utilities.UtilitiesSharelane;
+import org.example.Utilities.RegistrationUtils;
 import org.json.simple.parser.ParseException;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -63,7 +63,7 @@ public class BookPageTest extends BaseTest {
 
     @AfterClass
     public void doLogout(){
-        UtilitiesSharelane.logout();
+        LoginUtils.logout();
     }
 
 

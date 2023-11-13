@@ -1,7 +1,7 @@
 package org.example;
 
 import com.codeborne.selenide.SelenideElement;
-import org.example.Utilities.UtilitiesSharelane;
+import org.example.Utilities.RegistrationUtils;
 
 import static com.codeborne.selenide.Selenide.*;
 
@@ -16,13 +16,13 @@ public class Registration {
 
 
     public boolean submitValidZipCode(){
-        UtilitiesSharelane.enterCorrectZipCode();
+        RegistrationUtils.enterCorrectZipCode();
         submitButton.click();
         return registerButton.exists();
     }
 
     public void enterValidCredentials(){
-        UtilitiesSharelane.enterValidCredentials();
+        RegistrationUtils.enterValidCredentials();
     }
 
     public boolean submitCredentials(){
