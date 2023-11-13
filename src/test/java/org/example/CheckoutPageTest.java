@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.Utilities.JsonUtils;
 import org.example.Utilities.LoginUtils;
 import org.example.Utilities.UtilitiesSharelane;
 import org.json.simple.parser.ParseException;
@@ -22,7 +23,7 @@ public class CheckoutPageTest extends BaseTest {
 
     @BeforeClass
     public void openMainPage() throws IOException, ParseException {
-        checkoutPage.generateNewCards();
+        JsonUtils.generateNewCards();
         open("cgi-bin/main.py");
         LoginUtils.loginOverrideExpiration();
         open("cgi-bin/show_book.py?book_id=4");

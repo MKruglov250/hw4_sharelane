@@ -21,27 +21,27 @@ public class MainPage {
 
 
     public SelenideElement getFirstBookImage(){
-        return $$("img[height='150']").get(0);
+        return firstBookImage;
     }
 
     public SelenideElement getSecondBookImage(){
-        return $$("img[height='150']").get(1);
+        return secondBookImage;
     }
 
     public SelenideElement getSearchInputControl(){
-        return $("input[name='keyword']");
+        return searchInputControl;
     }
 
     public SelenideElement getSearchInputButton(){
-        return $("input[value='Search']");
+        return searchButton;
     }
 
     public SelenideElement getRegisterLink(){
-        return $("a[href='./register.py']");
+        return registerLink;
     }
 
     public SelenideElement getShoppingCartLink(){
-        return $("a[href='./shopping_cart.py']");
+        return shoppingCartLink;
     }
 
     public SelenideElement getMainPageLogin(){

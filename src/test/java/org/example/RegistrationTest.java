@@ -20,7 +20,7 @@ public class RegistrationTest extends BaseTest {
         Assert.assertTrue(registration.submitValidZipCode());
     }
 
-    // Breaks ATM as Password field is in fact not hidden
+    // Fails ATM as Password field is in fact not hidden - bug
     @Test(groups = "Regression", description = "Check Password field is hidden")
     public void checkPasswordFieldHidden(){
         registration.submitValidZipCode();

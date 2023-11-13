@@ -1,23 +1,24 @@
 package org.example;
 
+import com.codeborne.selenide.SelenideElement;
 import org.example.Utilities.UtilitiesSharelane;
 
 import static com.codeborne.selenide.Selenide.*;
 
 public class Registration {
 
-    public static void clickSubmitButton(){
-        $x("//input[@value='Continue']").click();
-    }
+    static SelenideElement submitButton = $x("//input[@value='Continue']");
 
-    public static void clickRegisterButton(){
-        $x("//input[@value='Register']").click();
-    }
+    static SelenideElement registerButton = $x("//input[@value='Register']");
+
+    SelenideElement registrationConfirmMessage =
+            $x("//span[@class='confirmation_message']");
+
 
     public boolean submitValidZipCode(){
         UtilitiesSharelane.enterCorrectZipCode();
-        clickSubmitButton();
-        return $x("//input[@value='Register']").exists();
+        submitButton.click();
+        return registerButton.exists();
     }
 
     public void enterValidCredentials(){
@@ -25,8 +26,8 @@ public class Registration {
     }
 
     public boolean submitCredentials(){
-        clickRegisterButton();
-        return $x("//span[@class='confirmation_message']").exists();
+        registerButton.click();
+        return registrationConfirmMessage.exists();
     }
 
     public boolean isInputFieldHidden(String fieldName){
