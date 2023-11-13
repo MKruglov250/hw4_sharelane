@@ -34,7 +34,7 @@ public class LoginUtils {
     public static boolean loginToSite() throws IOException, ParseException {
         //Get login and password values from JSON file
         JSONParser parser = new JSONParser();
-        Object obj = parser.parse(new FileReader("utils/credentials.json"));
+        Object obj = parser.parse(new FileReader("src/main/java/org/example/resources/credentials.json"));
         String login = ((JSONObject) obj).get("login").toString();
         String password = ((JSONObject) obj).get("password").toString();
 
@@ -62,4 +62,3 @@ public class LoginUtils {
         $x("//a[@href='./log_out.py']").click();
     }
 }
-

@@ -42,27 +42,27 @@ public class JsonUtils {
         credJson.put("amex",cardCell.getText());
 
 
-        FileWriter file = new FileWriter("utils/creditCard.json");
+        FileWriter file = new FileWriter("src/main/java/org/example/resources/creditCard.json");
         file.write(credJson.toJSONString());
         file.flush();
     }
 
     public static String getVisaCard() throws IOException, ParseException {
         JSONParser parser = new JSONParser();
-        Object obj = parser.parse(new FileReader("utils/creditCard.json"));
+        Object obj = parser.parse(new FileReader("src/main/java/org/example/resources/creditCard.json"));
         return ((org.json.simple.JSONObject) obj).get("visa").toString();
 
     }
 
     public static String getMastercardCard() throws IOException, ParseException {
         JSONParser parser = new JSONParser();
-        Object obj = parser.parse(new FileReader("utils/creditCard.json"));
+        Object obj = parser.parse(new FileReader("src/main/java/org/example/resources/creditCard.json"));
         return ((org.json.simple.JSONObject) obj).get("mastercard").toString();
     }
 
     public static String getAmexCard() throws IOException, ParseException {
         JSONParser parser = new JSONParser();
-        Object obj = parser.parse(new FileReader("utils/creditCard.json"));
+        Object obj = parser.parse(new FileReader("src/main/java/org/example/resources/creditCard.json"));
         return ((org.json.simple.JSONObject) obj).get("amex").toString();
     }
 
@@ -74,7 +74,7 @@ public class JsonUtils {
         credJson.put("login",login);
         credJson.put("password",password);
 
-        FileWriter file = new FileWriter("utils/credentials.json");
+        FileWriter file = new FileWriter("src/main/java/org/example/resources/credentials.json");
         file.write(credJson.toJSONString());
         file.flush();
     }
