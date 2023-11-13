@@ -29,20 +29,19 @@ public class CheckoutPage {
     public void generateNewCards() throws IOException {
         open("cgi-bin/get_credit_card.py");
         $x("//input[@value='Generate Credit Card']").click();
-        String cardNumber = $x("/html/body/center/table/tbody/tr/td/center/table/tbody/" +
-                "tr[2]/td[2]/span/b").getText();
+        SelenideElement cardCell = $x("//table[@cellpadding='3']//b");
         JSONObject credJson = new JSONObject();
-        credJson.put("visa",cardNumber);
+        credJson.put("visa",cardCell.getText());
 
         open("cgi-bin/get_credit_card.py");
         $x("//select[@name='type']").selectOption(1);
         $x("//input[@value='Generate Credit Card']").click();
-        credJson.put("mastercard",cardNumber);
+        credJson.put("mastercard",cardCell.getText());
 
         open("cgi-bin/get_credit_card.py");
         $x("//select[@name='type']").selectOption(2);
         $x("//input[@value='Generate Credit Card']").click();
-        credJson.put("amex",cardNumber);
+        credJson.put("amex",cardCell.getText());
 
 
         FileWriter file = new FileWriter("utils/creditCard.json");

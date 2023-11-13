@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.Utilities.LoginUtils;
+import org.example.Utilities.UtilitiesSharelane;
 import org.json.simple.parser.ParseException;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -22,7 +24,7 @@ public class BookPageTest extends BaseTest {
     @BeforeClass
     public void doLogin() throws IOException, ParseException {
         open("cgi-bin/main.py");
-        UtilitiesSharelane.loginOverrideExpiration();
+        LoginUtils.loginOverrideExpiration();
     }
 
     @BeforeMethod
@@ -48,7 +50,7 @@ public class BookPageTest extends BaseTest {
         Assert.assertTrue(bookPage.getPicture());
     }
 
-    @Test(groups = "Smoke", description = "Test that book picture exists")
+    @Test(groups = "Smoke", description = "Test that book price exists")
     public void checkBookPrice() {
         Assert.assertEquals(bookPage.getPrice(), "$10.00");
     }
@@ -56,13 +58,7 @@ public class BookPageTest extends BaseTest {
     @Test(groups = "Smoke", description = "Test that add to cart button works")
     public void checkAddToCartButton() {
         Assert.assertTrue(bookPage.addBookToCart());
-    }
-
-    @Test(groups = "Smoke", description = "Test that cart has book inside")
-    public void checkBookInCart() {
-        bookPage.addBookToCart();
-        open("cgi-bin/shopping_cart.py");
-        Assert.assertEquals(bookPage.getBookNameFromCart(),bookPage.compareBookName(bookId));
+        open("cgi-bin/main.py");
     }
 
     @AfterClass

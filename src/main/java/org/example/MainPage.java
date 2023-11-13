@@ -1,11 +1,25 @@
 package org.example;
 
 import com.codeborne.selenide.SelenideElement;
+import org.example.Utilities.LoginUtils;
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Selenide.*;
 
 public class MainPage {
+
+    SelenideElement firstBookImage = $$("img[height='150']").get(0);
+
+    SelenideElement secondBookImage = $$("img[height='150']").get(1);
+
+    SelenideElement searchInputControl = $("input[name='keyword']");
+
+    SelenideElement searchButton = $("input[value='Search']");
+
+    SelenideElement registerLink = $("a[href='./register.py']");
+
+    SelenideElement shoppingCartLink = $("a[href='./shopping_cart.py']");
+
+
     public SelenideElement getFirstBookImage(){
         return $$("img[height='150']").get(0);
     }
@@ -31,14 +45,14 @@ public class MainPage {
     }
 
     public SelenideElement getMainPageLogin(){
-        return UtilitiesSharelane.getLoginElement();
+        return LoginUtils.getLoginElement();
     }
 
     public SelenideElement getMainPagePassword(){
-        return UtilitiesSharelane.getPasswordElement();
+        return LoginUtils.getPasswordElement();
     }
 
     public SelenideElement getLoginButton(){
-        return UtilitiesSharelane.getLoginButton();
+        return LoginUtils.getLoginButton();
     }
 }

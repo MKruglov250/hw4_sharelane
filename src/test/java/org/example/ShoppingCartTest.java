@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.Utilities.LoginUtils;
+import org.example.Utilities.UtilitiesSharelane;
 import org.json.simple.parser.ParseException;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -9,7 +11,6 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.open;
-import static org.testng.Assert.*;
 
 public class ShoppingCartTest extends BaseTest{
 
@@ -19,7 +20,7 @@ public class ShoppingCartTest extends BaseTest{
     @BeforeClass
     public void openMainPage() throws IOException, ParseException {
         open("cgi-bin/main.py");
-        UtilitiesSharelane.loginOverrideExpiration();
+        LoginUtils.loginOverrideExpiration();
         open("cgi-bin/show_book.py?book_id=4");
         bookPage.addBookToCart();
         open("cgi-bin/shopping_cart.py");
@@ -60,13 +61,14 @@ public class ShoppingCartTest extends BaseTest{
         int quantity = 25;
         int discount = shoppingCart.getDiscount();
         double totalPrice = shoppingCart.getTotalPrice();
-        assertEquals(totalPrice, (double) (bookPrice *
+        Assert.assertEquals(totalPrice, (double) (bookPrice *
                 quantity * (100 - discount)) /100);
     }
 
     @Test(groups = "Smoke", description = "Test that proceeding to checkout works")
     public void proceedToCheckout(){
         Assert.assertTrue(shoppingCart.checkoutPageCheck());
+        open("cgi-bin/main.py");
     }
 
     @AfterClass

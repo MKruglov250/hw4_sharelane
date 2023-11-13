@@ -1,29 +1,15 @@
-package org.example;
+package org.example.Utilities;
 
 
-import com.codeborne.selenide.SelenideElement;
+
 
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 import java.io.*;
 
 import static com.codeborne.selenide.Selenide.*;
 
 public class UtilitiesSharelane {
-
-    public static SelenideElement getLoginElement(){
-        return $("input[name='email']");
-    }
-
-    public static SelenideElement getPasswordElement(){
-        return $("input[name='password']");
-    }
-
-    public static SelenideElement getLoginButton(){
-        return $("input[value='Login']");
-    }
 
     public static void openRegistrationPage(){
         open("https://www.sharelane.com/cgi-bin/register.py");
@@ -71,33 +57,6 @@ public class UtilitiesSharelane {
         //Account is created: parsing login data and saving to JSON
         parseLoginAndPassword();
         open("cgi-bin/main.py");
-    }
-
-    public static boolean loginToSite() throws IOException, ParseException {
-        //Get login and password values from JSON file
-        JSONParser parser = new JSONParser();
-        Object obj = parser.parse(new FileReader("utils/credentials.json"));
-        String login = ((JSONObject) obj).get("login").toString();
-        String password = ((JSONObject) obj).get("password").toString();
-
-        //Logging in
-        getLoginElement().sendKeys(login);
-        getPasswordElement().sendKeys(password);
-        getLoginButton().click();
-
-        //Check if login is successful (True)
-        return $x("//a[@href='./log_out.py']").exists();
-    }
-
-    public static void loginOverrideExpiration() throws IOException, ParseException {
-        if (loginToSite()) {
-        } else {
-            registerNewAccount();
-            if (loginToSite()) {
-            } else {
-                System.out.println("Login failed");
-            }
-        }
     }
 
     public static void logout(){

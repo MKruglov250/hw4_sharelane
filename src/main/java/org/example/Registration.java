@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.Utilities.UtilitiesSharelane;
+
 import static com.codeborne.selenide.Selenide.*;
 
 public class Registration {

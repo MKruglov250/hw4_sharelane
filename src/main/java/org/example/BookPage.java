@@ -1,40 +1,46 @@
 package org.example;
 
+import com.codeborne.selenide.SelenideElement;
+
 import static com.codeborne.selenide.Selenide.$x;
 
 public class BookPage {
 
+    SelenideElement bookAuthorCell =
+            $x("//table[@width='600']//td[2]//p[1]//b");
+
+    SelenideElement bookNameCell =
+            $x("//table[@width='600']//td[2]//p[2]");
+
+    SelenideElement bookPicture =
+            $x("//table[@width='600']//img");
+
+    SelenideElement bookPrice =
+            $x("//font[@color='green']");
+
+    SelenideElement addToCartButton =
+            $x("//img[@src='../images/add_to_cart.gif']");
+
     public String getBookAuthor(){
-        return $x("/html/body/center/table/tbody/tr[5]/td/" +
-                "table/tbody/tr/td[2]/p[1]/b").getText();
+        return bookAuthorCell.getText();
     }
 
     public String getBookName(){
-        return $x("/html/body/center/table/tbody/tr[5]/td/" +
-                "table/tbody/tr/td[2]/p[2]").getText();
+        return bookNameCell.getText();
     }
 
     public boolean getPicture(){
-        return $x("/html/body/center/table/tbody/tr[5]/td/" +
-                "table/tbody/tr/td[1]/img").exists();
+        return bookPicture.exists();
     }
 
     public String getPrice(){
-        return $x("/html/body/center/table/tbody/tr[5]/td/" +
-                "table/tbody/tr/td[2]/p[3]/b/font").getText()
-                .replace("Price: ", "");
+        return bookPrice.getText().replace("Price: ", "");
     }
 
     public boolean addBookToCart(){
-        $x("/html/body/center/table/tbody/tr[5]" +
-                "/td/table/tbody/tr/td[2]/p[2]/a/img").click();
-        return $x("/html/body/center/table/tbody/tr[4]/td/span").getText()
-                .equals("Book was added to the Shopping Cart");
-    }
-
-    public String getBookNameFromCart(){
-        return $x("/html/body/center/table/tbody/tr[5]/td/" +
-                "table/tbody/tr[2]/td[2]").getText();
+        addToCartButton.click();
+        return $x("//*[text()='Book was added to the Shopping Cart']")
+                .exists();
     }
 
     public String compareBookName(int i) {

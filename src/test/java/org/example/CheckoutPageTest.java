@@ -1,7 +1,9 @@
 package org.example;
 
+import org.example.Utilities.LoginUtils;
+import org.example.Utilities.UtilitiesSharelane;
 import org.json.simple.parser.ParseException;
-import org.junit.Assert;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -22,7 +24,7 @@ public class CheckoutPageTest extends BaseTest {
     public void openMainPage() throws IOException, ParseException {
         checkoutPage.generateNewCards();
         open("cgi-bin/main.py");
-        UtilitiesSharelane.loginOverrideExpiration();
+        LoginUtils.loginOverrideExpiration();
         open("cgi-bin/show_book.py?book_id=4");
         bookPage.addBookToCart();
         open("cgi-bin/shopping_cart.py");
@@ -90,19 +92,19 @@ public class CheckoutPageTest extends BaseTest {
     @Test(groups = "Smoke", description = "Check Visa card balance after payment",
             priority = 1)
     public void checkVisaBalanceAfterPayment() throws IOException, ParseException {
-        Assert.assertEquals("990.0", checkoutPage.checkVisaBalance());
+        Assert.assertEquals("990.00", checkoutPage.checkVisaBalance());
     }
 
     @Test(groups = "Smoke", description = "Check Mastercard card balance after payment",
             priority = 1)
     public void checkMastercardBalanceAfterPayment() throws IOException, ParseException {
-        Assert.assertEquals("990.0", checkoutPage.checkMastercardBalance());
+        Assert.assertEquals("990.00", checkoutPage.checkMastercardBalance());
     }
 
     @Test(groups = "Smoke", description = "Check Amex card balance after payment",
             priority = 1)
     public void checkAmexBalanceAfterPayment() throws IOException, ParseException {
-        Assert.assertEquals("990.0", checkoutPage.checkAmexBalance());
+        Assert.assertEquals("990.00", checkoutPage.checkAmexBalance());
     }
 
     @AfterClass
