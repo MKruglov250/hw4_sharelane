@@ -1,10 +1,5 @@
 package org.example.Utilities;
 
-
-
-
-import org.json.simple.JSONObject;
-
 import java.io.*;
 
 import static com.codeborne.selenide.Selenide.*;
@@ -27,19 +22,6 @@ public class UtilitiesSharelane {
         $x("//input[@name='password2']").sendKeys("1111");
     }
 
-    public static void parseLoginAndPassword() throws IOException {
-        String login = $x("//table[@border='1']//tr[1]//td[2]").getText();
-        String password = $x("//table[@border='1']//tr[2]//td[2]").getText();
-
-        JSONObject credJson = new JSONObject();
-        credJson.put("login",login);
-        credJson.put("password",password);
-
-        FileWriter file = new FileWriter("utils/credentials.json");
-        file.write(credJson.toJSONString());
-        file.flush();
-    }
-
 
     public static void registerNewAccount() throws IOException {
 
@@ -55,7 +37,7 @@ public class UtilitiesSharelane {
         $x("//input[@value='Register']").click();
 
         //Account is created: parsing login data and saving to JSON
-        parseLoginAndPassword();
+        JsonUtils.parseLoginAndPassword();
         open("cgi-bin/main.py");
     }
 
