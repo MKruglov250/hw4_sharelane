@@ -19,6 +19,7 @@ public class BaseTest {
         Configuration.headless = false;
         open(".");
         getWebDriver().manage().window().maximize();
-        getWebDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+        getWebDriver().manage().timeouts().implicitlyWait(Duration
+                .ofSeconds(3));
     }
 }

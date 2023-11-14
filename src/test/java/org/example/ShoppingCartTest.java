@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.model.UserModelBuilder;
 import org.example.utilities.LoginUtils;
 import org.json.simple.parser.ParseException;
 import org.testng.Assert;
@@ -19,7 +20,7 @@ public class ShoppingCartTest extends BaseTest{
     @BeforeClass
     public void openMainPage() throws IOException, ParseException {
         open("cgi-bin/main.py");
-        LoginUtils.loginOverrideExpiration();
+        LoginUtils.loginOverrideExpiration(UserModelBuilder.getSimpleUser());
         open("cgi-bin/show_book.py?book_id=4");
         bookPage.addBookToCart();
         open("cgi-bin/shopping_cart.py");

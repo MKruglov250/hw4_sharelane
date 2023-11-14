@@ -1,6 +1,7 @@
 package org.example;
 
 import org.example.model.BookModel;
+import org.example.model.UserModelBuilder;
 import org.example.utilities.JsonUtils;
 import org.example.utilities.LoginUtils;
 import org.json.simple.parser.ParseException;
@@ -28,7 +29,7 @@ public class BookPageTest extends BaseTest {
     @BeforeClass
     public void doLogin() throws IOException, ParseException {
         open("cgi-bin/main.py");
-        LoginUtils.loginOverrideExpiration();
+        LoginUtils.loginOverrideExpiration(UserModelBuilder.getSimpleUser());
         open("cgi-bin/main.py");
         mainPage.getFirstBookImage().click();
         bookId = Integer.parseInt(webdriver().object().getCurrentUrl().

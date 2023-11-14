@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.model.UserModelBuilder;
 import org.example.utilities.LoginUtils;
 import org.json.simple.parser.ParseException;
 import org.testng.Assert;
@@ -23,6 +24,16 @@ public class LoginPageTest extends BaseTest {
     @Test
     public void checkLoginWithValidCredentialsSucceeds() throws IOException, ParseException {
         Assert.assertTrue(loginPage.checkLoginOrRegisterAndLogin());
+    }
+
+    @Test
+    public void checkLoginForAdminAccount() throws IOException, ParseException {
+        Assert.assertTrue(loginPage.checkLoginToSite(UserModelBuilder.getAdminUser()));
+    }
+
+    @Test
+    public void checkLoginForIncorrectUser() throws IOException, ParseException {
+        Assert.assertTrue(loginPage.checkLoginToSite(UserModelBuilder.getIncorrectUser()));
     }
 
     @AfterClass
