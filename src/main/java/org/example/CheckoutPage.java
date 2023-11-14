@@ -1,7 +1,7 @@
 package org.example;
 
 import com.codeborne.selenide.SelenideElement;
-import org.example.Utilities.JsonUtils;
+import org.example.Utilities.CreditCardUtils;
 import org.json.simple.parser.ParseException;
 import java.io.IOException;
 
@@ -42,15 +42,15 @@ public class CheckoutPage {
     }
 
     public String getVisaCard() throws IOException, ParseException {
-        return JsonUtils.getVisaCard();
+        return CreditCardUtils.getVisaCard();
     }
 
     public String getMastercardCard() throws IOException, ParseException {
-        return JsonUtils.getMastercardCard();
+        return CreditCardUtils.getMastercardCard();
     }
 
     public String getAmexCard() throws IOException, ParseException {
-        return JsonUtils.getAmexCard();
+        return CreditCardUtils.getAmexCard();
     }
 
     public String checkVisaBalance() throws IOException, ParseException {

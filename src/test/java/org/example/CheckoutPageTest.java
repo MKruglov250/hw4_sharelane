@@ -1,8 +1,7 @@
 package org.example;
 
-import org.example.Utilities.JsonUtils;
+import org.example.Utilities.CreditCardUtils;
 import org.example.Utilities.LoginUtils;
-import org.example.Utilities.RegistrationUtils;
 import org.json.simple.parser.ParseException;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -23,7 +22,7 @@ public class CheckoutPageTest extends BaseTest {
 
     @BeforeClass
     public void openMainPage() throws IOException, ParseException {
-        JsonUtils.generateNewCards();
+        CreditCardUtils.generateNewCards();
         open("cgi-bin/main.py");
         LoginUtils.loginOverrideExpiration();
         open("cgi-bin/show_book.py?book_id=4");

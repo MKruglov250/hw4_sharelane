@@ -1,7 +1,7 @@
 package org.example;
 
+import org.example.Utilities.JsonUtils;
 import org.example.Utilities.LoginUtils;
-import org.example.Utilities.RegistrationUtils;
 import org.json.simple.parser.ParseException;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -37,12 +37,16 @@ public class BookPageTest extends BaseTest {
 
     @Test(groups = "Smoke", description = "Test that book has correct name")
     public void checkBookName() {
-        Assert.assertEquals(bookPage.getBookName(),bookPage.compareBookName(bookId));
+        Assert.assertEquals(bookPage.getBookName(), JsonUtils.getBookName(bookId));
+//        Assert.assertEquals(bookPage.getBookName(),
+//                bookPage.compareBookName(bookId));
     }
 
     @Test(groups = "Smoke", description = "Test that book author is correct")
     public void checkAuthorName() {
-        Assert.assertEquals(bookPage.getBookAuthor(),bookPage.compareAuthorName(bookId));
+        Assert.assertEquals(bookPage.getBookAuthor(), JsonUtils.getBookAuthor(bookId));
+//        Assert.assertEquals(bookPage.getBookAuthor(),
+//                bookPage.compareAuthorName(bookId));
     }
 
     @Test(groups = "Smoke", description = "Test that book picture exists")
