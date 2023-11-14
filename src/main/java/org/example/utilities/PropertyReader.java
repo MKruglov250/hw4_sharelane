@@ -10,8 +10,8 @@ public abstract class PropertyReader {
     private static void readProperties() {
         properties = new Properties();
         try {
-            properties.load(PropertyReader.class.getClassLoader().
-                    getResourceAsStream("src/main/java/org/example/resources/config.properties"));
+            properties.load(PropertyReader.class.
+                    getResourceAsStream("/src/main/java/org/example/resources/config.properties"));
         } catch (IOException e) {
             e.printStackTrace();
         }
