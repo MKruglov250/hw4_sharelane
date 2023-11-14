@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Testing Sharelane">
+    <test name="Regression" thread-count="1" parallel="false">
+        <groups>
+            <run>
+                <include name="Smoke"/>
+                <include name="Regression"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="org.example.BaseTest" />
+            <class name="org.example.BookPageTest"/>
+            <class name="org.example.CheckoutPageTest"/>
+            <class name="org.example.LoginPageTest"/>
+            <class name="org.example.MainPageTest"/>
+            <class name="org.example.RegistrationTest"/>
+            <class name="org.example.ShoppingCartTest"/>
+        </classes>
+    </test> <!-- Test -->
+</suite> <!-- Suite -->

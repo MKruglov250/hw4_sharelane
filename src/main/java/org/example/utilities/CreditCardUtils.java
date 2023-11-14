@@ -13,45 +13,54 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class CreditCardUtils {
 
+    static SelenideElement cardCell = $x("//table[@cellpadding='3']//b");
+
+    static JSONParser parser = new JSONParser();
+    static Object obj;
+
+    static {
+        try {
+            obj = parser.parse(new FileReader("src/resources/creditCard.json"));
+        } catch (IOException | ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static String generateCreditCard(int cardType){
+        open("cgi-bin/get_credit_card.py");
+        $x("//select[@name='type']").selectOption(cardType);
+        $x("//input[@value='Generate Credit Card']").click();
+        return cardCell.getText();
+    }
+
     public static void generateNewCards() throws IOException {
-        open("cgi-bin/get_credit_card.py");
-        $x("//input[@value='Generate Credit Card']").click();
-        SelenideElement cardCell = $x("//table[@cellpadding='3']//b");
         org.json.simple.JSONObject credJson = new org.json.simple.JSONObject();
-        credJson.put("visa",cardCell.getText());
 
-        open("cgi-bin/get_credit_card.py");
-        $x("//select[@name='type']").selectOption(1);
-        $x("//input[@value='Generate Credit Card']").click();
-        credJson.put("mastercard",cardCell.getText());
+        // Generate Visa card
+        credJson.put("visa",generateCreditCard(0));
 
-        open("cgi-bin/get_credit_card.py");
-        $x("//select[@name='type']").selectOption(2);
-        $x("//input[@value='Generate Credit Card']").click();
-        credJson.put("amex",cardCell.getText());
+        // Generate Mastercard card
+        credJson.put("mastercard",generateCreditCard(1));
 
-        // Write all three credit cards to Json
+        // Generate AmEx card
+        credJson.put("amex",generateCreditCard(2));
+
+        // Write all three credit cards to Json file
         FileWriter file = new FileWriter("src/resources/creditCard.json");
         file.write(credJson.toJSONString());
         file.flush();
     }
 
-    public static String getVisaCard() throws IOException, ParseException {
-        JSONParser parser = new JSONParser();
-        Object obj = parser.parse(new FileReader("src/resources/creditCard.json"));
+    public static String getVisaCard() {
         return ((org.json.simple.JSONObject) obj).get("visa").toString();
 
     }
 
-    public static String getMastercardCard() throws IOException, ParseException {
-        JSONParser parser = new JSONParser();
-        Object obj = parser.parse(new FileReader("src/resources/creditCard.json"));
+    public static String getMastercardCard() {
         return ((org.json.simple.JSONObject) obj).get("mastercard").toString();
     }
 
-    public static String getAmexCard() throws IOException, ParseException {
-        JSONParser parser = new JSONParser();
-        Object obj = parser.parse(new FileReader("src/resources/creditCard.json"));
+    public static String getAmexCard() {
         return ((org.json.simple.JSONObject) obj).get("amex").toString();
     }
 }

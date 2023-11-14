@@ -78,13 +78,13 @@ public class CheckoutPageTest extends BaseTest {
 
     @Test(groups = "Smoke", description = "Check Valid Mastercard credentials payment")
     public void checkValidMastercardCredentials() throws IOException, ParseException {
-        checkoutPage.getCardTypeDropdown().selectOption(0);
+        checkoutPage.getCardTypeDropdown().selectOption(1);
         Assert.assertTrue(checkoutPage.makePayment(checkoutPage.getMastercardCard()));
     }
 
     @Test(groups = "Smoke", description = "Check Valid Amex credentials payment")
     public void checkValidAmexCredentials() throws IOException, ParseException {
-        checkoutPage.getCardTypeDropdown().selectOption(0);
+        checkoutPage.getCardTypeDropdown().selectOption(2);
         Assert.assertTrue(checkoutPage.makePayment(checkoutPage.getAmexCard()));
     }
 

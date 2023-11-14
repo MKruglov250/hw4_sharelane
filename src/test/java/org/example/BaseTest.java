@@ -20,6 +20,7 @@ public class BaseTest {
         Configuration.browser = PropertyReader.getBrowserProperty();
         Configuration.headless = false;
         open(".");
+
         getWebDriver().manage().window().maximize();
         getWebDriver().manage().timeouts().implicitlyWait(Duration
                 .ofSeconds(PropertyReader.getTimeoutProperty()));
