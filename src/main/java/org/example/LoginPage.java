@@ -13,10 +13,9 @@ import static com.codeborne.selenide.Selenide.$x;
 public class LoginPage {
 
     SelenideElement logoutLink = $x("//a[@href='./log_out.py']");
-    SelenideElement failLoginMessage = $x("//*text()" +
-            "='Oops, error. Email and/or password don't match our records']");
+    SelenideElement failLoginMessage = $x("//span[@class='error_message']");
 
-    public boolean checkLoginToSite(UserModel user) throws IOException, ParseException {
+    public boolean checkLoginToSite(UserModel user) {
         LoginUtils.loginToSite(user);
         return failLoginMessage.exists();
     }

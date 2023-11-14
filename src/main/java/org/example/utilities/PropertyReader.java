@@ -11,7 +11,7 @@ public abstract class PropertyReader {
         properties = new Properties();
         try {
             properties.load(PropertyReader.class.
-                    getResourceAsStream("config.properties"));
+                    getResourceAsStream("src/resources/config.properties"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -39,7 +39,7 @@ public abstract class PropertyReader {
     public static String getAdminLastNameProperty( ) {
         return getProperty("AdminLastName");
     }
-    public static String getAdminEmailProperty( ) throws IOException, ParseException {
+    public static String getAdminEmailProperty( ) {
         return getProperty("AdminEmail");
     }
 

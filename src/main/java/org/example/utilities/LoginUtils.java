@@ -35,21 +35,17 @@ public class LoginUtils {
 
     public static String getLogin() throws IOException, ParseException {
         JSONParser parser = new JSONParser();
-        Object obj = parser.parse(new FileReader("src/main/java/org/example/resources/credentials.json"));
+        Object obj = parser.parse(new FileReader("src/resources/credentials.json"));
         return ((JSONObject) obj).get("login").toString();
     }
 
     public static String getPassword() throws IOException, ParseException {
         JSONParser parser = new JSONParser();
-        Object obj = parser.parse(new FileReader("src/main/java/org/example/resources/credentials.json"));
+        Object obj = parser.parse(new FileReader("src/resources/credentials.json"));
         return ((JSONObject) obj).get("password").toString();
     }
 
-    public static boolean loginToSite(UserModel user) throws IOException, ParseException {
-        //Get login and password values from JSON file
-//        JSONParser parser = new JSONParser();
-//        String login = getLogin();
-//        String password = getPassword();
+    public static boolean loginToSite(UserModel user) {
 
         //Logging in
         getLoginElement().sendKeys(user.getEmail());

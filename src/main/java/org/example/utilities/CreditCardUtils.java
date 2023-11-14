@@ -31,27 +31,27 @@ public class CreditCardUtils {
         credJson.put("amex",cardCell.getText());
 
         // Write all three credit cards to Json
-        FileWriter file = new FileWriter("src/main/java/org/example/resources/creditCard.json");
+        FileWriter file = new FileWriter("src/resources/creditCard.json");
         file.write(credJson.toJSONString());
         file.flush();
     }
 
     public static String getVisaCard() throws IOException, ParseException {
         JSONParser parser = new JSONParser();
-        Object obj = parser.parse(new FileReader("src/main/java/org/example/resources/creditCard.json"));
+        Object obj = parser.parse(new FileReader("src/resources/creditCard.json"));
         return ((org.json.simple.JSONObject) obj).get("visa").toString();
 
     }
 
     public static String getMastercardCard() throws IOException, ParseException {
         JSONParser parser = new JSONParser();
-        Object obj = parser.parse(new FileReader("src/main/java/org/example/resources/creditCard.json"));
+        Object obj = parser.parse(new FileReader("src/resources/creditCard.json"));
         return ((org.json.simple.JSONObject) obj).get("mastercard").toString();
     }
 
     public static String getAmexCard() throws IOException, ParseException {
         JSONParser parser = new JSONParser();
-        Object obj = parser.parse(new FileReader("src/main/java/org/example/resources/creditCard.json"));
+        Object obj = parser.parse(new FileReader("src/resources/creditCard.json"));
         return ((org.json.simple.JSONObject) obj).get("amex").toString();
     }
 }

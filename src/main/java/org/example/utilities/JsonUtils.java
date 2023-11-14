@@ -17,7 +17,7 @@ public class JsonUtils {
     static {
         try {
             jsonObject = (JSONObject) parser
-                    .parse(new FileReader("src/main/java/org/example/resources/books.json"));
+                    .parse(new FileReader("src/resources/books.json"));
         } catch (IOException | ParseException e) {
             throw new RuntimeException(e);
         }

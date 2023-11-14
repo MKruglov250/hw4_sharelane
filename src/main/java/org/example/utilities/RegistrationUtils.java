@@ -30,7 +30,7 @@ public class RegistrationUtils {
         credJson.put("login",login);
         credJson.put("password",password);
 
-        FileWriter file = new FileWriter("src/main/java/org/example/resources/credentials.json");
+        FileWriter file = new FileWriter("src/resources/credentials.json");
         file.write(credJson.toJSONString());
         file.flush();
     }
