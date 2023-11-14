@@ -1,12 +1,12 @@
 package org.example;
 
-import org.example.Utilities.JsonUtils;
-import org.example.Utilities.LoginUtils;
+import org.example.model.BookModel;
+import org.example.utilities.JsonUtils;
+import org.example.utilities.LoginUtils;
 import org.json.simple.parser.ParseException;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
@@ -21,32 +21,31 @@ public class BookPageTest extends BaseTest {
 
     static int bookId;
 
+    static BookModel bookActive;
+    static BookModel bookReference;
+
+
     @BeforeClass
     public void doLogin() throws IOException, ParseException {
         open("cgi-bin/main.py");
         LoginUtils.loginOverrideExpiration();
-    }
-
-    @BeforeMethod
-    public void openBookPage() {
         open("cgi-bin/main.py");
         mainPage.getFirstBookImage().click();
         bookId = Integer.parseInt(webdriver().object().getCurrentUrl().
                 replaceAll("[\\D]", ""));
+        bookActive = new BookModel(bookPage.getBookName(),
+                bookPage.getBookAuthor(), bookId);
+        bookReference = new BookModel(JsonUtils.getBookJson(bookId));
     }
 
     @Test(groups = "Smoke", description = "Test that book has correct name")
     public void checkBookName() {
-        Assert.assertEquals(bookPage.getBookName(), JsonUtils.getBookName(bookId));
-//        Assert.assertEquals(bookPage.getBookName(),
-//                bookPage.compareBookName(bookId));
+        Assert.assertEquals(bookActive.name, bookReference.name);
     }
 
     @Test(groups = "Smoke", description = "Test that book author is correct")
     public void checkAuthorName() {
-        Assert.assertEquals(bookPage.getBookAuthor(), JsonUtils.getBookAuthor(bookId));
-//        Assert.assertEquals(bookPage.getBookAuthor(),
-//                bookPage.compareAuthorName(bookId));
+        Assert.assertEquals(bookActive.author, bookReference.author);
     }
 
     @Test(groups = "Smoke", description = "Test that book picture exists")
@@ -59,7 +58,7 @@ public class BookPageTest extends BaseTest {
         Assert.assertEquals(bookPage.getPrice(), "$10.00");
     }
 
-    @Test(groups = "Smoke", description = "Test that add to cart button works")
+    @Test(groups = "Smoke", description = "Test that add to cart button works", priority = 1)
     public void checkAddToCartButton() {
         Assert.assertTrue(bookPage.addBookToCart());
         open("cgi-bin/main.py");

@@ -1,4 +1,4 @@
-package org.example.Utilities;
+package org.example.utilities;
 
 import com.codeborne.selenide.SelenideElement;
 import org.json.simple.parser.JSONParser;

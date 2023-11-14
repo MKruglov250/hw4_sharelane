@@ -1,7 +1,6 @@
 package org.example;
 
-import org.example.Utilities.LoginUtils;
-import org.example.Utilities.RegistrationUtils;
+import org.example.utilities.LoginUtils;
 import org.json.simple.parser.ParseException;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;

@@ -1,4 +1,4 @@
-package org.example.Utilities;
+package org.example.utilities;
 
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -25,14 +25,8 @@ public class JsonUtils {
 
     static JSONArray jsonArray = (JSONArray) jsonObject.get("books");
 
-    public static String getBookName(int i) {
-        JSONObject book = (JSONObject) jsonArray.get(i-1);
-        return book.get("name").toString();
-    }
-
-    public static String getBookAuthor(int i) {
-        JSONObject book = (JSONObject) jsonArray.get(i-1);
-        return book.get("author").toString();
+    public static JSONObject getBookJson (int i) {
+        return (JSONObject) jsonArray.get(i-1);
     }
 
 }

@@ -1,4 +1,4 @@
-package org.example.Utilities;
+package org.example.utilities;
 
 import java.io.*;
 

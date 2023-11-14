@@ -1,7 +1,7 @@
 package org.example;
 
 import com.codeborne.selenide.SelenideElement;
-import org.example.Utilities.LoginUtils;
+import org.example.utilities.LoginUtils;
 
 import static com.codeborne.selenide.Selenide.*;
 
