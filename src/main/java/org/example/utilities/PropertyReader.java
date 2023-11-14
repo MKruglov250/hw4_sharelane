@@ -11,7 +11,7 @@ public abstract class PropertyReader {
         properties = new Properties();
         try {
             properties.load(PropertyReader.class.
-                    getResourceAsStream("/src/main/java/org/example/resources/config.properties"));
+                    getResourceAsStream("config.properties"));
         } catch (IOException e) {
             e.printStackTrace();
         }
