@@ -1,8 +1,10 @@
 package org.example;
 
 import com.codeborne.selenide.Configuration;
+import org.example.utilities.PropertyReader;
 import org.testng.annotations.BeforeSuite;
 
+import java.io.FileNotFoundException;
 import java.time.Duration;
 
 import static com.codeborne.selenide.Selenide.open;
@@ -12,14 +14,14 @@ public class BaseTest {
 
     @BeforeSuite(description = "Initializing Herokuapp site and setting up Browser" +
             "and WebDriver settings before suite start")
-    public void before() {
+    public void before() throws FileNotFoundException {
 
         Configuration.baseUrl = "https://www.sharelane.com/";
-        Configuration.browser = "Chrome";
+        Configuration.browser = PropertyReader.getBrowserProperty();
         Configuration.headless = false;
         open(".");
         getWebDriver().manage().window().maximize();
         getWebDriver().manage().timeouts().implicitlyWait(Duration
-                .ofSeconds(3));
+                .ofSeconds(PropertyReader.getTimeoutProperty()));
     }
 }

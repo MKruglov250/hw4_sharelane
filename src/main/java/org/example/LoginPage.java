@@ -17,7 +17,7 @@ public class LoginPage {
 
     public boolean checkLoginToSite(UserModel user) {
         LoginUtils.loginToSite(user);
-        return failLoginMessage.exists();
+        return (!failLoginMessage.exists());
     }
 
     public boolean checkLoginOrRegisterAndLogin() throws IOException, ParseException {
