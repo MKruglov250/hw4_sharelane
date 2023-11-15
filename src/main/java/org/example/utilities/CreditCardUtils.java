@@ -49,6 +49,11 @@ public class CreditCardUtils {
         FileWriter file = new FileWriter("src/resources/creditCard.json");
         file.write(credJson.toJSONString());
         file.flush();
+        try {
+            obj = parser.parse(new FileReader("src/resources/creditCard.json"));
+        } catch (IOException | ParseException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static String getVisaCard() {
