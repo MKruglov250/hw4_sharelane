@@ -2,7 +2,7 @@ package org.example;
 
 import com.codeborne.selenide.Configuration;
 import org.example.utilities.PropertyReader;
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
 
 import java.io.FileNotFoundException;
 import java.time.Duration;
@@ -12,7 +12,7 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class BaseTest {
 
-    @BeforeSuite(description = "Initializing Herokuapp site and setting up Browser" +
+    @BeforeTest(alwaysRun = true, description = "Initializing Herokuapp site and setting up Browser" +
             "and WebDriver settings before suite start")
     public void before() throws FileNotFoundException {
 

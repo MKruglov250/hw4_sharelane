@@ -26,7 +26,7 @@ public class BookPageTest extends BaseTest {
     static BookModel bookReference;
 
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     public void doLogin() throws IOException, ParseException {
         open("cgi-bin/main.py");
         LoginUtils.loginOverrideExpiration(UserModelBuilder.getSimpleUser());
@@ -65,7 +65,7 @@ public class BookPageTest extends BaseTest {
         open("cgi-bin/main.py");
     }
 
-    @AfterClass
+    @AfterClass(alwaysRun = true)
     public void doLogout(){
         LoginUtils.logout();
     }

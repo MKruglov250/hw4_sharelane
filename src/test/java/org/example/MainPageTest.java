@@ -10,7 +10,7 @@ public class MainPageTest extends BaseTest {
 
     MainPage mainPage = new MainPage();
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void openPage(){
         open("cgi-bin/main.py");
     }

@@ -17,7 +17,7 @@ public class ShoppingCartTest extends BaseTest{
     BookPage bookPage = new BookPage();
     ShoppingCart shoppingCart = new ShoppingCart();
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     public void openMainPage() throws IOException, ParseException {
         open("cgi-bin/main.py");
         LoginUtils.loginOverrideExpiration(UserModelBuilder.getSimpleUser());
@@ -71,7 +71,7 @@ public class ShoppingCartTest extends BaseTest{
         open("cgi-bin/main.py");
     }
 
-    @AfterClass
+    @AfterClass(alwaysRun = true)
     public void doLogout(){
         LoginUtils.logout();
     }

@@ -1,14 +1,12 @@
 package org.example;
 
+import com.codeborne.selenide.SelenideElement;
 import org.example.model.UserModelBuilder;
 import org.example.utilities.CreditCardUtils;
 import org.example.utilities.LoginUtils;
 import org.json.simple.parser.ParseException;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.io.IOException;
 
@@ -19,22 +17,24 @@ public class CheckoutPageTest extends BaseTest {
 
     BookPage bookPage = new BookPage();
     CheckoutPage checkoutPage = new CheckoutPage();
+    MainPage mainPage = new MainPage();
+    SelenideElement checkoutButton = $x("//input[@value='Proceed to Checkout']");
+    SelenideElement shoppingCart = $x("//a[@href='./shopping_cart.py']");
 
 
-    @BeforeClass
-    public void openMainPage() throws IOException, ParseException {
+    @BeforeClass(alwaysRun = true)
+    public void generateTestCards() throws IOException {
         CreditCardUtils.generateNewCards();
-        open("cgi-bin/main.py");
-        LoginUtils.loginOverrideExpiration(UserModelBuilder.getSimpleUser());
-        open("cgi-bin/show_book.py?book_id=4");
-        bookPage.addBookToCart();
-        open("cgi-bin/shopping_cart.py");
-        $x("//input[@value='Proceed to Checkout']").click();
     }
 
-    @BeforeMethod
-    public void openCheckoutPage(){
-        open("cgi-bin/checkout.py?book_id=4&q=1&total=1070.0");
+    @BeforeMethod(alwaysRun = true)
+    public void addBookToCartAndCheckout() throws IOException, ParseException {
+        open("cgi-bin/main.py");
+        LoginUtils.loginOverrideExpiration(UserModelBuilder.getSimpleUser());
+        mainPage.getFirstBookImage().click();
+        bookPage.addBookToCart();
+        shoppingCart.click();
+        checkoutButton.click();
     }
 
     @Test(groups = "Smoke",description = "Check card number element on page")
@@ -108,7 +108,7 @@ public class CheckoutPageTest extends BaseTest {
         Assert.assertEquals("990.00", checkoutPage.checkAmexBalance());
     }
 
-    @AfterClass
+    @AfterMethod(alwaysRun = true)
     public void doLogout(){
         open("cgi-bin/main.py");
         LoginUtils.logout();

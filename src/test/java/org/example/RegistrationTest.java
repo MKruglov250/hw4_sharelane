@@ -10,7 +10,7 @@ public class RegistrationTest extends BaseTest {
 
     Registration registration = new Registration();
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void openRegistrationPage(){
         open("cgi-bin/register.py");
     }
