@@ -71,19 +71,19 @@ public class CheckoutPageTest extends BaseTest {
     }
 
     @Test(groups = "Smoke", description = "Check Valid Visa credentials payment")
-    public void checkValidVisaCredentials() throws IOException, ParseException {
+    public void checkValidVisaCredentials() {
         checkoutPage.getCardTypeDropdown().selectOption(0);
         Assert.assertTrue(checkoutPage.makePayment(checkoutPage.getVisaCard()));
     }
 
     @Test(groups = "Smoke", description = "Check Valid Mastercard credentials payment")
-    public void checkValidMastercardCredentials() throws IOException, ParseException {
+    public void checkValidMastercardCredentials() {
         checkoutPage.getCardTypeDropdown().selectOption(1);
         Assert.assertTrue(checkoutPage.makePayment(checkoutPage.getMastercardCard()));
     }
 
     @Test(groups = "Smoke", description = "Check Valid Amex credentials payment")
-    public void checkValidAmexCredentials() throws IOException, ParseException {
+    public void checkValidAmexCredentials() {
         checkoutPage.getCardTypeDropdown().selectOption(2);
         Assert.assertTrue(checkoutPage.makePayment(checkoutPage.getAmexCard()));
     }
@@ -92,25 +92,24 @@ public class CheckoutPageTest extends BaseTest {
     // All 3 tests below fail because of website bugs
     @Test(groups = "Smoke", description = "Check Visa card balance after payment",
             priority = 1)
-    public void checkVisaBalanceAfterPayment() throws IOException, ParseException {
+    public void checkVisaBalanceAfterPayment() {
         Assert.assertEquals("990.00", checkoutPage.checkVisaBalance());
     }
 
     @Test(groups = "Smoke", description = "Check Mastercard card balance after payment",
             priority = 1)
-    public void checkMastercardBalanceAfterPayment() throws IOException, ParseException {
+    public void checkMastercardBalanceAfterPayment() {
         Assert.assertEquals("990.00", checkoutPage.checkMastercardBalance());
     }
 
     @Test(groups = "Smoke", description = "Check Amex card balance after payment",
             priority = 1)
-    public void checkAmexBalanceAfterPayment() throws IOException, ParseException {
+    public void checkAmexBalanceAfterPayment() {
         Assert.assertEquals("990.00", checkoutPage.checkAmexBalance());
     }
 
-    @AfterMethod(alwaysRun = true)
+    @AfterMethod(alwaysRun = true, description = "Log out from website")
     public void doLogout(){
-        open("cgi-bin/main.py");
         LoginUtils.logout();
     }
 

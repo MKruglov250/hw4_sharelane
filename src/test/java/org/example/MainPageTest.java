@@ -1,6 +1,8 @@
 package org.example;
 
+import org.example.utilities.LoginUtils;
 import org.junit.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -59,8 +61,9 @@ public class MainPageTest extends BaseTest {
         Assert.assertTrue(webdriver().object().getCurrentUrl().contains("https://www.sharelane.com/cgi-bin/show_book.py"));
     }
 
-
-
-
+    @AfterClass(alwaysRun = true, description = "Log out from website")
+    public void doLogout(){
+        LoginUtils.logout();
+    }
 
 }

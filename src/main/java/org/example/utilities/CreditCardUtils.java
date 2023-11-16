@@ -1,6 +1,7 @@
 package org.example.utilities;
 
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
@@ -26,6 +27,7 @@ public class CreditCardUtils {
         }
     }
 
+    @Step("Generate new credit card of selected type")
     public static String generateCreditCard(int cardType){
         open("cgi-bin/get_credit_card.py");
         $x("//select[@name='type']").selectOption(cardType);
@@ -33,6 +35,8 @@ public class CreditCardUtils {
         return cardCell.getText();
     }
 
+    @Step("Generate a set of new Visa, MasterCard and AmEx cards with $1000 balance on each, " +
+            "and saving them to local storage")
     public static void generateNewCards() throws IOException {
         org.json.simple.JSONObject credJson = new org.json.simple.JSONObject();
 
@@ -56,15 +60,18 @@ public class CreditCardUtils {
         }
     }
 
+    @Step("Get valid Visa card from local storage")
     public static String getVisaCard() {
         return ((org.json.simple.JSONObject) obj).get("visa").toString();
 
     }
 
+    @Step("Get valid Mastercard card from local storage")
     public static String getMastercardCard() {
         return ((org.json.simple.JSONObject) obj).get("mastercard").toString();
     }
 
+    @Step("Get valid AmEx card from local storage")
     public static String getAmexCard() {
         return ((org.json.simple.JSONObject) obj).get("amex").toString();
     }

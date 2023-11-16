@@ -1,6 +1,7 @@
 package org.example;
 
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.$x;
 
@@ -21,22 +22,27 @@ public class BookPage {
     SelenideElement addToCartButton =
             $x("//img[@src='../images/add_to_cart.gif']");
 
+    @Step("Checks author of selected book")
     public String getBookAuthor(){
         return bookAuthorCell.getText();
     }
 
+    @Step("Checks name of selected book")
     public String getBookName(){
         return bookNameCell.getText();
     }
 
+    @Step("Checks if picture exists for selected book")
     public boolean getPicture(){
         return bookPicture.exists();
     }
 
+    @Step("Checks price of selected book")
     public String getPrice(){
         return bookPrice.getText().replace("Price: ", "");
     }
 
+    @Step("Checks that book was added to cart and success message appeared")
     public boolean addBookToCart(){
         addToCartButton.click();
         return $x("//*[text()='Book was added to the Shopping Cart']")

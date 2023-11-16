@@ -1,5 +1,6 @@
 package org.example.utilities;
 
+import io.qameta.allure.Step;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.json.simple.JSONArray;
@@ -25,6 +26,7 @@ public class JsonUtils {
 
     static JSONArray jsonArray = (JSONArray) jsonObject.get("books");
 
+    @Step("Get book from JSON file by Id")
     public static JSONObject getBookJson (int i) {
         return (JSONObject) jsonArray.get(i-1);
     }

@@ -34,7 +34,7 @@ public class LoginPageTest extends BaseTest {
         Assert.assertFalse(loginPage.checkLoginToSite(UserModelBuilder.getIncorrectUser()));
     }
 
-    @AfterMethod(alwaysRun = true)
+    @AfterMethod(alwaysRun = true, description = "Log out from website")
     public void logout(){
         if (loginPage.logoutLink.exists()){
             LoginUtils.logout();

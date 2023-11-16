@@ -26,16 +26,24 @@ public class BookPageTest extends BaseTest {
     static BookModel bookReference;
 
 
-    @BeforeClass(alwaysRun = true)
+    @BeforeClass(alwaysRun = true, description = "Log in to website")
     public void doLogin() throws IOException, ParseException {
         open("cgi-bin/main.py");
         LoginUtils.loginOverrideExpiration(UserModelBuilder.getSimpleUser());
+    }
+
+    @BeforeClass(alwaysRun = true, description = "Get first book found on Main Page as Active book")
+    public void getActiveBookFromMainPage(){
         open("cgi-bin/main.py");
         mainPage.getFirstBookImage().click();
         bookId = Integer.parseInt(webdriver().object().getCurrentUrl().
                 replaceAll("[\\D]", ""));
         bookActive = new BookModel(bookPage.getBookName(),
                 bookPage.getBookAuthor(), bookId);
+    }
+
+    @BeforeClass(alwaysRun = true, description = "Get book from JSON file by id as Reference book")
+    public void getReferneceBookFromStorage(){
         bookReference = new BookModel(JsonUtils.getBookJson(bookId));
     }
 
@@ -65,7 +73,7 @@ public class BookPageTest extends BaseTest {
         open("cgi-bin/main.py");
     }
 
-    @AfterClass(alwaysRun = true)
+    @AfterClass(alwaysRun = true, description = "Log out from website")
     public void doLogout(){
         LoginUtils.logout();
     }

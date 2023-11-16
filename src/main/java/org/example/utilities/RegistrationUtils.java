@@ -1,19 +1,24 @@
 package org.example.utilities;
 
+import io.qameta.allure.Step;
+
 import java.io.*;
 
 import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationUtils {
 
+    @Step("Open Registration page")
     public static void openRegistrationPage(){
         open("cgi-bin/register.py");
     }
 
+    @Step("Enter zip-code '33333' to pass registration")
     public static void enterCorrectZipCode(){
         $x("//input[@name='zip_code']").sendKeys("33333");
     }
 
+    @Step("Enter valid credentials to pass registration")
     public static void enterValidCredentials(){
         $x("//input[@name='first_name']").sendKeys("Tester");
         $x("//input[@name='last_name']").sendKeys("Schemer");
@@ -22,6 +27,7 @@ public class RegistrationUtils {
         $x("//input[@name='password2']").sendKeys("1111");
     }
 
+    @Step("Get actual Login and Password provided by Sharelane after registration")
     public static void parseLoginAndPassword() throws IOException {
         String login = $x("//table[@border='1']//tr[1]//td[2]").getText();
         String password = $x("//table[@border='1']//tr[2]//td[2]").getText();
@@ -36,6 +42,7 @@ public class RegistrationUtils {
     }
 
 
+    @Step("Register new account with valid zip-code and credentials")
     public static void registerNewAccount() throws IOException {
 
         //Go to registration page

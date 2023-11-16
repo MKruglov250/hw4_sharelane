@@ -10,7 +10,7 @@ public class RegistrationTest extends BaseTest {
 
     Registration registration = new Registration();
 
-    @BeforeMethod(alwaysRun = true)
+    @BeforeMethod(alwaysRun = true, description = "Open registration page")
     public void openRegistrationPage(){
         open("cgi-bin/register.py");
     }
@@ -21,7 +21,7 @@ public class RegistrationTest extends BaseTest {
     }
 
     // Fails ATM as Password field is in fact not hidden - bug
-    @Test(groups = "Regression", description = "Check Password field is hidden")
+    @Test(groups = "Regression", description = "Check Password field is masked")
     public void checkPasswordFieldHidden(){
         registration.submitValidZipCode();
         Assert.assertTrue(registration.isInputFieldHidden("password1"));
