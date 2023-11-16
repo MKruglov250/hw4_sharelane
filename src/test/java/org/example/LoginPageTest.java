@@ -6,12 +6,14 @@ import org.json.simple.parser.ParseException;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.open;
 
+@Listeners({TestListener.class})
 public class LoginPageTest extends BaseTest {
 
     LoginPage loginPage = new LoginPage();

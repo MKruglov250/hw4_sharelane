@@ -6,12 +6,14 @@ import org.json.simple.parser.ParseException;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.open;
 
+@Listeners({TestListener.class})
 public class ShoppingCartTest extends BaseTest{
 
     BookPage bookPage = new BookPage();

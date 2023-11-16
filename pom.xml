@@ -79,6 +79,13 @@
             <version>7.0.2</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.codeborne/selenide-testng -->
+        <dependency>
+            <groupId>com.codeborne</groupId>
+            <artifactId>selenide-testng</artifactId>
+            <version>7.0.2</version>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
         <dependency>
             <groupId>com.googlecode.json-simple</groupId>
