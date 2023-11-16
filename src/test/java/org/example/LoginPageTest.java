@@ -15,21 +15,21 @@ import static com.codeborne.selenide.Selenide.open;
 public class LoginPageTest extends BaseTest {
 
     LoginPage loginPage = new LoginPage();
-    @BeforeMethod(alwaysRun = true)
+    @BeforeMethod(alwaysRun = true, description = "Open main page")
     public void openMainPage(){
         open("cgi-bin/main.py");
     }
 
-    @Test(groups = "Smoke")
+    @Test(groups = "Smoke", description = "Login with admin credentials")
     public void checkAdminDataLogin() throws IOException, ParseException {
         Assert.assertTrue(loginPage.checkLoginToSite(UserModelBuilder.getAdminUser()));
     }
-    @Test(groups = "Smoke",priority = 1)
+    @Test(groups = "Smoke",priority = 1, description = "Login with simple user credentials")
     public void checkLoginWithValidCredentialsSucceeds() throws IOException, ParseException {
         Assert.assertTrue(loginPage.checkLoginOrRegisterAndLogin());
     }
 
-    @Test(groups = "Smoke",priority = 2)
+    @Test(groups = "Smoke",priority = 2, description = "Check login with incorrect user")
     public void checkLoginForIncorrectUser() {
         Assert.assertFalse(loginPage.checkLoginToSite(UserModelBuilder.getIncorrectUser()));
     }
