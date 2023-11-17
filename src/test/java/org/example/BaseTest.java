@@ -5,10 +5,8 @@ import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
 import io.qameta.allure.selenide.AllureSelenide;
-import io.qameta.allure.selenide.LogType;
 import org.example.utilities.PropertyReader;
-import org.openqa.selenium.bidi.log.LogLevel;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 
 
@@ -30,13 +28,13 @@ public class BaseTest {
         return Files.readAllBytes(Paths.get("src/resources", resourceName));
     }
 
-    @BeforeTest(alwaysRun = true, description = "Initializing Herokuapp site and setting up Browser" +
+    @BeforeClass(alwaysRun = true, description = "Initializing Herokuapp site and setting up Browser" +
             "and WebDriver settings before suite start")
     public void before() throws IOException {
         Configuration.screenshots = true;
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide()
                 .screenshots(true)
-                .savePageSource(true)
+                .savePageSource(false)
                 .includeSelenideSteps(true));
 
 
