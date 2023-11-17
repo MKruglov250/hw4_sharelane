@@ -1,10 +1,15 @@
 package org.example;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
+import io.qameta.allure.selenide.AllureSelenide;
+import io.qameta.allure.selenide.LogType;
 import org.example.utilities.PropertyReader;
+import org.openqa.selenium.bidi.log.LogLevel;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Listeners;
 
 
 import java.io.IOException;
@@ -16,7 +21,7 @@ import java.time.Duration;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
-
+@Listeners(TestListener.class)
 public class BaseTest {
 
     @Attachment
@@ -28,6 +33,12 @@ public class BaseTest {
     @BeforeTest(alwaysRun = true, description = "Initializing Herokuapp site and setting up Browser" +
             "and WebDriver settings before suite start")
     public void before() throws IOException {
+        Configuration.screenshots = true;
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide()
+                .screenshots(true)
+                .savePageSource(true)
+                .includeSelenideSteps(true));
+
 
         getFileBytes("config.properties");
 
@@ -35,6 +46,8 @@ public class BaseTest {
         Configuration.browser = PropertyReader.getBrowserProperty();
         Configuration.headless = false;
         open(".");
+
+
 
         getWebDriver().manage().window().maximize();
         getWebDriver().manage().timeouts().implicitlyWait(Duration

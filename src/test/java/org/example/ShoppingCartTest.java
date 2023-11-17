@@ -78,6 +78,4 @@ public class ShoppingCartTest extends BaseTest{
         LoginUtils.logout();
     }
 
-
-
 }
