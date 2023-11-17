@@ -1,17 +1,13 @@
 package org.example;
 
-import lombok.extern.log4j.Log4j2;
 import org.example.utilities.LoginUtils;
 import org.junit.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.*;
 
-@Listeners({TestListener.class})
-@Log4j2
 public class MainPageTest extends BaseTest {
 
     MainPage mainPage = new MainPage();

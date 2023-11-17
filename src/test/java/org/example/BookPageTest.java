@@ -8,7 +8,6 @@ import org.json.simple.parser.ParseException;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
@@ -16,7 +15,6 @@ import java.io.IOException;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.webdriver;
 
-@Listeners({TestListener.class})
 public class BookPageTest extends BaseTest {
 
     BookPage bookPage = new BookPage();

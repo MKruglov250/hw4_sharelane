@@ -13,7 +13,6 @@ import java.io.IOException;
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.open;
 
-@Listeners({TestListener.class})
 public class CheckoutPageTest extends BaseTest {
 
     BookPage bookPage = new BookPage();

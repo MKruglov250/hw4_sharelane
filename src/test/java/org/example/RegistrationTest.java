@@ -2,12 +2,10 @@ package org.example;
 
 import org.junit.Assert;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.open;
 
-@Listeners({TestListener.class})
 public class RegistrationTest extends BaseTest {
 
     Registration registration = new Registration();

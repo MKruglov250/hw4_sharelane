@@ -7,7 +7,6 @@ import io.qameta.allure.Step;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.example.utilities.PropertyReader;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Listeners;
 
 
 import java.io.IOException;
@@ -19,7 +18,6 @@ import java.time.Duration;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
-@Listeners(TestListener.class)
 public class BaseTest {
 
     @Attachment
@@ -36,7 +34,6 @@ public class BaseTest {
                 .screenshots(true)
                 .savePageSource(false)
                 .includeSelenideSteps(true));
-
 
         getFileBytes("config.properties");
 
