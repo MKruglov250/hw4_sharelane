@@ -2,9 +2,13 @@ package org.example;
 
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j;
+import lombok.extern.log4j.Log4j2;
+import org.slf4j.Logger;
 
 import static com.codeborne.selenide.Selenide.$x;
 
+@Log4j2
 public class BookPage {
 
     SelenideElement bookAuthorCell =
@@ -24,7 +28,9 @@ public class BookPage {
 
     @Step("Checks author of selected book")
     public String getBookAuthor(){
-        return bookAuthorCell.getText();
+        var text = bookAuthorCell.getText();
+        log.info("Checks author of selected book" + text);
+        return text;
     }
 
     @Step("Checks name of selected book")
@@ -34,6 +40,9 @@ public class BookPage {
 
     @Step("Checks if picture exists for selected book")
     public boolean getPicture(){
+
+        bookAuthorCell.selectOption("asdasd");
+
         return bookPicture.exists();
     }
 

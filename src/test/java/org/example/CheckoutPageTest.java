@@ -38,35 +38,35 @@ public class CheckoutPageTest extends BaseTest {
         checkoutButton.click();
     }
 
-    @Test(groups = "Smoke",description = "Check card number element on page")
-    public void checkCardNumberField(){
+    @Test(groups = "Smoke", description = "Check card number element on page")
+    public void checkCardNumberField() {
         Assert.assertTrue(checkoutPage.getCardNumberField().exists());
     }
 
-    @Test(groups = "Smoke",description = "Check card type dropdown")
-    public void checkCardsDropdown(){
+    @Test(groups = "Smoke", description = "Check card type dropdown")
+    public void checkCardsDropdown() {
         Assert.assertTrue(checkoutPage.getCardTypeDropdown().exists());
     }
 
-    @Test(groups = "Smoke",description = "Check Make Payment button presence")
-    public void checkMakePaymentButtonExists(){
+    @Test(groups = "Smoke", description = "Check Make Payment button presence")
+    public void checkMakePaymentButtonExists() {
         Assert.assertTrue(checkoutPage.getPaymentButton().exists());
     }
 
     @Test(groups = "Regression", description = "Check invalid Visa credentials payment")
-    public void checkInvalidVisaCredentials(){
+    public void checkInvalidVisaCredentials() {
         checkoutPage.getCardTypeDropdown().selectOption(0);
         Assert.assertFalse(checkoutPage.makePayment("1235321252135212"));
     }
 
     @Test(groups = "Regression", description = "Check invalid Mastercard credentials payment")
-    public void checkInvalidMastercardCredentials(){
+    public void checkInvalidMastercardCredentials() {
         checkoutPage.getCardTypeDropdown().selectOption(1);
         Assert.assertFalse(checkoutPage.makePayment("1235321252135212"));
     }
 
     @Test(groups = "Regression", description = "Check invalid Amex credentials payment")
-    public void checkInvalidAmexCredentials(){
+    public void checkInvalidAmexCredentials() {
         checkoutPage.getCardTypeDropdown().selectOption(2);
         Assert.assertFalse(checkoutPage.makePayment("1235321252135212"));
     }
@@ -94,7 +94,7 @@ public class CheckoutPageTest extends BaseTest {
     @Test(groups = "Smoke", description = "Check Visa card balance after payment",
             priority = 1)
     public void checkVisaBalanceAfterPayment() {
-        Assert.assertEquals("990.00", checkoutPage.checkVisaBalance());
+        Assert.assertEquals(checkoutPage.checkVisaBalance(), "990.00");
     }
 
     @Test(groups = "Smoke", description = "Check Mastercard card balance after payment",
@@ -110,7 +110,7 @@ public class CheckoutPageTest extends BaseTest {
     }
 
     @AfterMethod(alwaysRun = true, description = "Log out from website")
-    public void doLogout(){
+    public void doLogout() {
         LoginUtils.logout();
     }
 
