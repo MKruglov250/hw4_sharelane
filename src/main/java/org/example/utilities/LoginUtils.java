@@ -2,6 +2,7 @@ package org.example.utilities;
 
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import org.example.model.UserModel;
 import org.example.model.UserModelBuilder;
 import org.json.simple.JSONObject;
@@ -13,6 +14,7 @@ import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.*;
 
+@Log4j2
 public class LoginUtils {
 
     static SelenideElement loginElement = $("input[name='email']");
@@ -68,8 +70,11 @@ public class LoginUtils {
     public static void loginOverrideExpiration(UserModel user) throws IOException, ParseException {
         if (loginToSite(user)) {
         } else {
+            log.debug("Login failed. Probably credentials may be expired...");
+            log.debug("Registering new account");
             RegistrationUtils.registerNewAccount();
             UserModel newUser = UserModelBuilder.getSimpleUser();
+            log.debug("Doing login attempt with new user credentials");
             if (loginToSite(newUser)) {
             } else {
                 System.out.println("Login failed");

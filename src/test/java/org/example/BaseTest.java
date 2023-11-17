@@ -7,6 +7,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.selenide.AllureSelenide;
 import lombok.extern.log4j.Log4j2;
 import org.example.utilities.PropertyReader;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 
@@ -28,6 +29,22 @@ public class BaseTest {
     public void setSystemProperties(){
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy-hh-mm-ss");
         System.setProperty("currenttime", dateFormat.format(new Date()));
+    }
+
+    @Attachment("Info File")
+    @Step
+    public static byte[] attachInfoFile () throws IOException{
+        log.info("Attaching Info log to Allure");
+        String path = "logs/sharelane-info.log";
+        return Files.readAllBytes(Paths.get(path));
+    }
+
+    @Attachment("Debug File")
+    @Step
+    public static byte[] attachDebugFile () throws IOException{
+        log.info("Attaching Info log to Allure");
+        String path = "logs/sharelane-debug.log";
+        return Files.readAllBytes(Paths.get(path));
     }
 
     @Attachment
@@ -62,4 +79,11 @@ public class BaseTest {
                 .ofSeconds(PropertyReader.getTimeoutProperty()));
         log.info("Web driver configuration complete");
     }
+
+    @AfterSuite
+    public void attachSharelaneLogFiles() throws IOException {
+        attachDebugFile();
+        attachInfoFile();
+    }
+
 }
