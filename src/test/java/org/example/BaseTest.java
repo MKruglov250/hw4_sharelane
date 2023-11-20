@@ -35,16 +35,14 @@ public class BaseTest {
     @Step
     public static byte[] attachInfoFile () throws IOException{
         log.info("Attaching Info log to Allure");
-        String path = "logs/sharelane-info.log";
-        return Files.readAllBytes(Paths.get(path));
+        return Files.readAllBytes(Paths.get("src/logs", "sharelane-info.log"));
     }
 
     @Attachment("Debug File")
     @Step
     public static byte[] attachDebugFile () throws IOException{
         log.info("Attaching Info log to Allure");
-        String path = "logs/sharelane-debug.log";
-        return Files.readAllBytes(Paths.get(path));
+        return Files.readAllBytes(Paths.get("src/logs", "sharelane-debug.log"));
     }
 
     @Attachment
